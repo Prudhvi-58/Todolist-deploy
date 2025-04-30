@@ -1,3 +1,4 @@
+import os 
 from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
@@ -28,5 +29,6 @@ def delete_task(index):
     return jsonify({"error": "Invalid task index"}), 404
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080, debug=True)
+    port = int(os.environ.get("PORT", 8080))  # dynamically adapts
+    app.run(host="0.0.0.0", port=port, debug=True)
     
